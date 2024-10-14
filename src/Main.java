@@ -81,7 +81,7 @@ public class Main {
             	System.out.println("Enter donation type: \ncash\nitem ");
             	String donationType = scanner.nextLine();
             	switch(donationType) {
-            	case "cash":
+            	case "cash":{
             		System.out.print("Enter donor name: ");
                     String donorNameCash = scanner.nextLine();
                     
@@ -99,9 +99,10 @@ public class Main {
                     CashDonation cashDonation = new CashDonation(donorNameCash, donationType, amountCash);
                     cashDonation.recordDonation();
             		break;
+            	}
             		
-            	case "item":
             		
+            	case "item":{
             		System.out.print("Enter donor name: ");
                     String donorNameItem = scanner.nextLine();
                     
@@ -115,6 +116,9 @@ public class Main {
                     itemDonation.recordDonation();
                     
             		break;
+            	}
+            		
+            		
             	}
             	
                 break;
