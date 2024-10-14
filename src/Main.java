@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import Dao.*;
 import Enitity.*;
+import Exception.*;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidPetAgeException, InsufficientFundsException {
 		Scanner scanner = new Scanner(System.in);
         PetShelter petShelter = new PetShelter();
         AdoptionEvent adoptionEvent = new AdoptionEvent();
@@ -32,8 +33,13 @@ public class Main {
                 System.out.print("Enter pet name: ");
                 String name = scanner.nextLine();
 
+                
+                // handling InvalidPetAgeException  
                 System.out.print("Enter pet age: ");
                 int age = scanner.nextInt();
+                if(age<=0) {
+                	throw new InvalidPetAgeException("Age must be a positive integer.");
+                }
                 scanner.nextLine(); 
 
                 System.out.print("Enter pet breed: ");
@@ -78,8 +84,13 @@ public class Main {
             	case "cash":
             		System.out.print("Enter donor name: ");
                     String donorNameCash = scanner.nextLine();
+                    
                     System.out.print("Enter donation amount: ");
                     double amountCash = Double.parseDouble(scanner.nextLine());
+                    if (amountCash < 10) {
+                        throw new InsufficientFundsException("Minimum donation amount is $10.");
+                    }
+                    
                     System.out.print("Enter donation date (yyyy-mm-dd): ");
                     String donationDateStr = scanner.nextLine();
                     Date donationDateCash = java.sql.Date.valueOf(donationDateStr);
@@ -93,8 +104,10 @@ public class Main {
             		
             		System.out.print("Enter donor name: ");
                     String donorNameItem = scanner.nextLine();
+                    
                     System.out.print("Enter donation amount: ");
                     double amountItem = Double.parseDouble(scanner.nextLine());
+                    
                     System.out.print("Enter item type (e.g., food, toys): ");
                     String itemType = scanner.nextLine();
                     

@@ -88,7 +88,7 @@ public class PetShelter {
                 return pet;
             }
         }
-        return null; // Pet not found
+        return null; 
     }
 	
 	public void listAvailablePets() {

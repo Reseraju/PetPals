@@ -39,7 +39,7 @@ public class DBPropertyUtil {
         if (connection != null) {
             try {
                 connection.close();
-                connection = null; // Reset connection after closing
+                connection = null; 
             } catch (SQLException e) {
                 e.printStackTrace();
             }

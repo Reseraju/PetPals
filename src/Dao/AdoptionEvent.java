@@ -12,11 +12,11 @@ import Util.*;
 
 public class AdoptionEvent {
 	private List<IAdoptable> participants;
-	private DBPropertyUtil dbUtil;
+	private DBPropertyUtil dbprops;
 	
 	public AdoptionEvent() {
         this.participants = new ArrayList<>();
-        this.dbUtil = new DBPropertyUtil();
+        this.dbprops = new DBPropertyUtil();
     }
 	
 	
@@ -24,7 +24,7 @@ public class AdoptionEvent {
         List<String> events = new ArrayList<>();
         String query = "SELECT EventID, EventName, EventDate, Location FROM adoptionevents";
 
-        try (Connection conn = dbUtil.getConnection();
+        try (Connection conn = dbprops.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -41,7 +41,7 @@ public class AdoptionEvent {
         } catch (SQLException e) {
             System.err.println("Error fetching upcoming events: " + e.getMessage());
         } finally {
-            dbUtil.closeConnection(); // Close connection after fetching data
+            dbprops.closeConnection(); 
         }
         return events;
     }
